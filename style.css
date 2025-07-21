@@ -14,7 +14,7 @@ body {
   font-family: 'Roboto', 'Arial', sans-serif;
   background: radial-gradient(ellipse at top left, #1a237e 60%, #0d1335 100%);
   min-height: 100vh;
-  color: #e3e3e3;
+  color: black;
   padding: 0;
   position: relative;
   /* Add a star field background image for extra NASA feel */
@@ -223,7 +223,7 @@ body .modal-content {
   width: 100%;
   padding: 32px;
   box-shadow: 0 8px 32px rgba(25,118,210,0.32);
-  color: #fff;
+  color: black; /* Make modal text black */
   position: relative;
   overflow-y: auto;
   max-height: 90vh;
@@ -283,13 +283,13 @@ body .modal-content button:hover {
 
 /* NASA-style footer */
 .nasa-footer {
-  background: #0b1744;
+  background: linear-gradient(90deg, #0b1744 60%, #21244a 100%);
   color: #fff;
-  padding: 32px 0 24px 0;
+  padding: 40px 0 28px 0;
   margin-top: 48px;
   border-top: 3px solid #1976d2;
   font-family: 'Roboto', Arial, sans-serif;
-  box-shadow: 0 -2px 16px rgba(25,118,210,0.15);
+  box-shadow: 0 -2px 24px rgba(25,118,210,0.18);
 }
 
 .nasa-footer-content {
@@ -302,60 +302,52 @@ body .modal-content button:hover {
 }
 
 .nasa-footer-logo {
-  width: 80px;
+  width: 90px;
   height: auto;
-  margin-bottom: 12px;
-  filter: drop-shadow(0 0 8px #1976d2);
+  margin-bottom: 16px;
+  filter: drop-shadow(0 0 10px #1976d2);
 }
 
+/* Center the NASA logo in the footer */
+.nasa-footer-logo-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+/* Footer main layout: NASA links left, social right */
+.nasa-footer-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  gap: 32px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+/* NASA links left column */
 .nasa-footer-links {
   display: flex;
-  gap: 18px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 8px;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 180px;
 }
 
-.nasa-footer-links a {
-  color: #64b5f6;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1rem;
-  transition: color 0.2s;
-}
-
-.nasa-footer-links a:hover {
-  color: #fff;
-  text-decoration: underline;
-}
-
-.nasa-footer-info {
-  text-align: center;
-  font-size: 0.95rem;
-  color: #bdbdbd;
-}
-
-.nasa-footer-info a {
-  color: #64b5f6;
-  text-decoration: none;
-}
-
-.nasa-footer-info a:hover {
-  text-decoration: underline;
-}
-
-/* Social section in footer */
+/* Social section right column */
 .nasa-social-section {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-bottom: 18px;
+  align-items: flex-end;
+  min-width: 220px;
 }
 
 .nasa-social-title {
-  font-weight: 600;
+  font-weight: 700;
   color: #bdbdbd;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   margin-bottom: 10px;
   letter-spacing: 1px;
 }
@@ -366,24 +358,21 @@ body .modal-content button:hover {
   margin-bottom: 10px;
 }
 
-.nasa-social-icons a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #21244a;
-  color: #fff;
-  font-size: 2rem;
-  width: 44px;
-  height: 44px;
+.social-logo {
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  text-decoration: none;
+  background: #21244a;
+  padding: 6px;
   box-shadow: 0 2px 8px rgba(25,118,210,0.15);
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, transform 0.2s;
+  object-fit: contain;
+  display: block;
 }
 
-.nasa-social-icons a:hover {
+.nasa-social-icons a:hover .social-logo {
   background: #283593;
-  color: #64b5f6;
+  transform: scale(1.08);
 }
 
 .nasa-social-link {
@@ -392,11 +381,68 @@ body .modal-content button:hover {
   font-size: 1rem;
   margin-bottom: 4px;
   display: block;
+  text-align: right;
 }
 
 .nasa-social-link:hover {
   color: #fff;
   text-decoration: underline;
+}
+
+/* NASA hero section links */
+.nasa-hero-links {
+  margin-top: 12px;
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.nasa-hero-links a {
+  color: #64b5f6;
+  background: #21244a;
+  padding: 8px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 2px 8px rgba(25,118,210,0.10);
+}
+
+.nasa-hero-links a:hover {
+  background: #283593;
+  color: #fff;
+}
+
+/* Responsive: stack columns on small screens */
+@media (max-width: 700px) {
+  .nasa-footer-main {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  .nasa-footer-links,
+  .nasa-social-section {
+    align-items: center;
+    min-width: unset;
+    width: 100%;
+    text-align: center;
+  }
+  .nasa-social-section {
+    align-items: center;
+  }
+  .nasa-social-link {
+    text-align: center;
+  }
+}
+
+/* Special style for X logo to ensure visibility */
+.x-logo {
+  background: #fff; /* White background for contrast */
+  padding: 4px;     /* Slightly less padding for PNG */
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(25,118,210,0.10);
 }
 
 /* Orbitron font for NASA look */
