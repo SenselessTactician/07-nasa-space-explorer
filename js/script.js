@@ -115,13 +115,18 @@ setupDateInputs(startDateInput, endDateInput);
 showRandomFact();
 fetchImages(startDateInput.value, endDateInput.value);
 function setupDateInputs(startInput, endInput) {
+  // Get today's date
   const today = new Date();
-  const lastYear = new Date(today);
-  lastYear.setFullYear(today.getFullYear() - 1);
 
-  startInput.value = lastYear.toISOString().split('T')[0];
+  // Get the date 7 days ago
+  const sevenDaysAgo = new Date(today);
+  sevenDaysAgo.setDate(today.getDate() - 6); // Show 7 days including today
+
+  // Set input values using YYYY-MM-DD format
+  startInput.value = sevenDaysAgo.toISOString().split('T')[0];
   endInput.value = today.toISOString().split('T')[0];
 
+  // Set allowed min/max for inputs
   startInput.min = '1995-06-16'; // APOD start date
   endInput.max = today.toISOString().split('T')[0];
 }
